@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lcm.c                                              :+:      :+:    :+:   */
+/*   ft_list_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 22:26:01 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/06/16 22:27:31 by geonwkim         ###   ########.fr       */
+/*   Created: 2024/06/16 21:54:45 by geonwkim          #+#    #+#             */
+/*   Updated: 2024/06/16 21:58:44 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	<unistd.h>
 
-unsigned int	lcm(unsigned int a, unsigned int b)
+typedef struct	s_list
 {
-	int	n;
+	struct	s_list	*next;
+	void			*data;
+} t_list;
 
-	n = 0;
-	if (a == 0 && b == 0)
+int	ft_list_size(t_list *begin_list)
+{
+	if (begin_list == 0)
 		return (0);
-	if (a > b)
-		n = a;
 	else
-		n = b;
-	while (1)
-	{
-		if (n % a == 0 && n % b == 0)
-			break ;
-		++n;
-	}
-	return (n);
+		return (1 + ft_list_size(begin_list->next));
 }

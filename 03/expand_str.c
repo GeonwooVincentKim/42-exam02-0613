@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lcm.c                                              :+:      :+:    :+:   */
+/*   expand_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 22:26:01 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/06/16 22:27:31 by geonwkim         ###   ########.fr       */
+/*   Created: 2024/06/16 18:14:33 by geonwkim          #+#    #+#             */
+/*   Updated: 2024/06/16 18:51:42 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	<unistd.h>
 
-unsigned int	lcm(unsigned int a, unsigned int b)
+void	expa(char* str)
 {
-	int	n;
+	int	i;
+	int	flag;
 
-	n = 0;
-	if (a == 0 && b == 0)
-		return (0);
-	if (a > b)
-		n = a;
-	else
-		n = b;
-	while (1)
+	i = 0;
+	flag = 0;
+	while (str[i] == ' ' || str[i] == '\t')
+		i++;
+	while (str[i])
 	{
-		if (n % a == 0 && n % b == 0)
-			break ;
-		++n;
+		if (str[i] == ' ' || str[i] == '\t')
+			flag = 1;
+		else
+		{
+			if (flag)
+				write(1, "   ", 3);
+			flag = 0;
+			write(1, &str[i], 1);
+		}
+		i++;
 	}
-	return (n);
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc == 2)
+		expa(argv[1]);
+	write(1, "\n", 1);
+	return (0);
 }

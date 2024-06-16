@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lcm.c                                              :+:      :+:    :+:   */
+/*   ft_rrange.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 22:26:01 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/06/16 22:27:31 by geonwkim         ###   ########.fr       */
+/*   Created: 2024/06/16 22:02:28 by geonwkim          #+#    #+#             */
+/*   Updated: 2024/06/16 22:14:20 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	<unistd.h>
+#include	<stdlib.h>
 
-unsigned int	lcm(unsigned int a, unsigned int b)
+int	*ft_rrange(int start, int end)
 {
-	int	n;
+	int	i;
+	int	len;
+	int	*tab;
 
-	n = 0;
-	if (a == 0 && b == 0)
-		return (0);
-	if (a > b)
-		n = a;
-	else
-		n = b;
-	while (1)
+	i = 0;
+	len = abs((end - start)) + 1;
+	tab = (int *)malloc(sizeof(int) * (len));
+	while (i < len)
 	{
-		if (n % a == 0 && n % b == 0)
-			break ;
-		++n;
+		if (start < end)
+		{
+			tab[i] = end;
+			end--;
+			i++;
+		}
+		else
+		{
+			tab[i] = end;
+			end++;
+			i++;
+		}
 	}
-	return (n);
+	return (tab);
 }

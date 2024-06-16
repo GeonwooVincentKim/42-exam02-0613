@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lcm.c                                              :+:      :+:    :+:   */
+/*   hidenp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 22:26:01 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/06/16 22:27:31 by geonwkim         ###   ########.fr       */
+/*   Created: 2024/06/16 22:23:59 by geonwkim          #+#    #+#             */
+/*   Updated: 2024/06/16 23:11:30 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	<unistd.h>
 
-unsigned int	lcm(unsigned int a, unsigned int b)
+int	main(int argc, char **argv)
 {
-	int	n;
+	int	i;
+	int	j;
 
-	n = 0;
-	if (a == 0 && b == 0)
-		return (0);
-	if (a > b)
-		n = a;
-	else
-		n = b;
-	while (1)
+	i = 0;
+	j = 0;
+	if (argc == 3)
 	{
-		if (n % a == 0 && n % b == 0)
-			break ;
-		++n;
+		while (argv[2][j] && argv[1][i])
+		{
+			if (argv[2][j] == argv[1][i])
+				i++;
+			j++;
+		}
+		if (argv[1][i] == '\0')
+			write(1, "0", 1);
+		else
+			write(1, "1", 1);
 	}
-	return (n);
+	return (0);
 }
