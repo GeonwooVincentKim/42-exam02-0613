@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 16:31:33 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/06/17 16:41:22 by geonwkim         ###   ########.fr       */
+/*   Created: 2024/06/17 18:08:17 by geonwkim          #+#    #+#             */
+/*   Updated: 2024/06/17 18:14:13 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 void	fprime(char *str)
 {
 	int	i;
-	int	value;
+	int	n;
 
 	i = 1;
-	value = atoi(str);
-	if (value == 1)
+	n = atoi(str);
+	if (n == 1)
 		printf("1");
-	while (value >= ++i)
+	while (++i <= n)
 	{
-		if (value % i == 0)
+		if (n % i == 0)
 		{
 			printf("%d", i);
-			if (value == i)
+			if (n == i)
 				break ;
 			printf("*");
-			value /= i;
+			n /= i;
 			i = 1;
 		}
 	}

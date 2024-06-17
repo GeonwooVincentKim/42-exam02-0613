@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_foreach.c                                  :+:      :+:    :+:   */
+/*   sort_int_tab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 17:05:00 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/06/17 18:28:55 by geonwkim         ###   ########.fr       */
+/*   Created: 2024/06/17 18:16:24 by geonwkim          #+#    #+#             */
+/*   Updated: 2024/06/17 18:28:27 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	<unistd.h>
 
-typedef struct s_list
+void	sort_int_tab(int *tab, unsigned int size)
 {
-	struct s_list	*next;
-	void			*data;
-}	t_list;
+	unsigned int	i;
+	int				temp;
 
-void	ft_list_foreach(t_list *begin_list, void (*f)(void *))
-{
-	while (begin_list)
+	i = 0;
+	temp = 0;
+	while (i < size - 1)
 	{
-		(*f)(begin_list->data);
-		begin_list = begin_list->next;
+		if (tab[i] > tab[i + 1])
+		{
+			temp = tab[i];
+			tab[i] = tab[i + 1];
+			tab[i + 1] = temp;
+			i = 0;
+		}
+		else
+			i++;
 	}
 }

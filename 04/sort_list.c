@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_foreach.c                                  :+:      :+:    :+:   */
+/*   sort_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 17:05:00 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/06/17 18:28:55 by geonwkim         ###   ########.fr       */
+/*   Created: 2024/06/17 18:29:05 by geonwkim          #+#    #+#             */
+/*   Updated: 2024/06/17 18:31:53 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,29 @@ typedef struct s_list
 	void			*data;
 }	t_list;
 
-void	ft_list_foreach(t_list *begin_list, void (*f)(void *))
+t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
 {
-	while (begin_list)
+	int		swap;
+	t_list	*tmp;
+
+	tmp = lst;
+	while (lst->next != NULL)
 	{
-		(*f)(begin_list->data);
-		begin_list = begin_list->next;
+		if (((*cmp)(lst->data, lst->next->data)) == 0)
+		{
+			swap = lst->data;
+			lst->data = lst->next->data;
+			lst->next->data = swap;
+			lst = tmp;
+		}
+		else
+			lst = lst->next;
 	}
+	lst = tmp;
+	return (lst);
+}
+
+int	ascending(int a, int b)
+{
+	return (a <= b);
 }
