@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:15:56 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/06/17 17:20:49 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:52:09 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strncpy(char *s1, char *s2, int n)
 	int	i;
 
 	i = 0;
-	while (++i < n && s1[i] && s2[i])
+	while (++i < n && s2[i])
 		s1[i] = s2[i];
 	s1[i] = '\0';
 	return (s1);
